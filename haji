@@ -1,0 +1,41 @@
+# Hospital Billing System
+
+name = input("Enter patient name: ")
+age = int(input("Enter patient age: "))
+
+consultation = float(input("Enter consultation charge: "))
+diagnostic = float(input("Enter diagnostic charge: "))
+treatment = float(input("Enter treatment charge: "))
+
+# Validate charges
+if age < 0 or consultation < 0 or diagnostic < 0 or treatment < 0:
+    print("Invalid input! Values cannot be negative.")
+
+else:
+    total = consultation + diagnostic + treatment
+
+    # Apply concession
+    if age >= 60:
+        discount = total * 0.10
+    elif total >= 5000:
+        discount = total * 0.05
+    else:
+        discount = 0
+
+    final_bill = total - discount
+
+    # Classify patient
+    if final_bill >= 10000:
+        category = "High Payment"
+    elif final_bill >= 5000:
+        category = "Medium Payment"
+    else:
+        category = "Low Payment"
+
+    # Display bill
+    print("\n--- HOSPITAL BILL ---")
+    print("Patient Name:", name)
+    print("Total Bill: Rs.", total)
+    print("Discount: Rs.", discount)
+    print("Final Bill: Rs.", final_bill)
+    print("Patient Category:", category)
